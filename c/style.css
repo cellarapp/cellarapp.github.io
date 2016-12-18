@@ -2,19 +2,19 @@
     width: 100%;
 }
 
-.item .badge {
-
-    background-color: #547799!important;
-}
-
 .item .badge.badge-qty {
         top: 8px;
             right: 12px;
+                background-color: #547799!important;
+
 }
 
 .item .badge.badge-img {
         top: 36px;
         right: 7px;
+        color: #547799;
+        background-color: transparent!important;
+        font-size: 18px;
 }
 
 .bar-custom {
