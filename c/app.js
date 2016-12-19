@@ -86,12 +86,12 @@ app.directive('errSrc', function() {
 
 function loadData($scope, $http, $ionicPopup) {
 
-    var isCellar = getParameterByName('type') === 'Cellar';
+var isCellar = getParameterByName('type') === 'Cellar';
 
     $http({
         method: 'GET',
-        params: {token:  getParameterByName('token')},
-        url: 'https://cellarappapi.azurewebsites.net/api/cellar/'+ (isCellar ? 'getcellarbeersweb' : 'getcollectionbeersweb');
+        params: {'token': getParameterByName('token')},
+        url: 'https://cellarappapi.azurewebsites.net/api/cellar/'+ (isCellar ? 'getcellarbeersweb' : 'getcollectionbeersweb'),
         timeout: 90000
     }).then(function(resp) {
 
