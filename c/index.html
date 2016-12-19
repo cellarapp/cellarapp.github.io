@@ -57,15 +57,16 @@
                 <p ng-if="cellarBeer.bottledOnDate">
                     Bottled: {{formatDate(cellarBeer.bottledOnDate)}}
                 </p>
-
+<p ng-if="cellarBeer.hasPhoto">
+<i class="icon ion-image"></i>
+                </p>
 
 
 
                 <span class="badge badge-positive badge-qty">x{{ cellarBeer.totalCount }}{{(cellarBeer.price > 0) && ' / $' + cellarBeer.price || ''}}</span>
 
 
-                <span ng-show="{{ cellarBeer.hasPhoto }}" class="badge badge-positive badge-img"> <i class="icon ion-image"></i></span>
-
+            
 
 
             </ion-item>
