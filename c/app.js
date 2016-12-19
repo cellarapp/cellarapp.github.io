@@ -17,13 +17,6 @@ var app = angular.module('ionicApp', ['ionic', 'angular.filter'])
       $scope.modal.hide();
     };
 
-    //Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function() {
-      $scope.modal.remove();
-    });
-
-
-
     $ionicLoading.show({
         template: 'Loading Beers...'
     });
@@ -93,11 +86,12 @@ app.directive('errSrc', function() {
 
 function loadData($scope, $http, $ionicPopup) {
 
-var isCellar = getParameterByName('type') === 'Cellar';
+    var isCellar = getParameterByName('type') === 'Cellar';
 
     $http({
         method: 'GET',
-        url: 'https://cellarappapi.azurewebsites.net/api/cellar/'+ (isCellar ? 'getcellarbeersweb' : 'getcollectionbeersweb') +'?token=' + getParameterByName('token'),
+        params: {token:  getParameterByName('token')},
+        url: 'https://cellarappapi.azurewebsites.net/api/cellar/'+ (isCellar ? 'getcellarbeersweb' : 'getcollectionbeersweb');
         timeout: 90000
     }).then(function(resp) {
 
@@ -113,7 +107,6 @@ var isCellar = getParameterByName('type') === 'Cellar';
         if (resp.data.beers.length > 0) {
 
             resp.data.beers.sort(function(a, b) {
-
 
                 return (a.beer.breweryName + ' ' + a.beer.name).localeCompare(b.beer.breweryName + ' ' + b.beer.name);
 
