@@ -43,12 +43,19 @@ var app = angular.module('ionicApp', ['ionic', 'angular.filter'])
         loadData($scope, $http, $ionicPopup);
     };
 
-    $scope.showImage = function(cellarBeer) {
+    $scope.showImage = function(cb) {
 
-        if(cellarBeer.hasPhoto)
+        if(cb.hasPhoto)
         {
-            $scope.imageSrc  = 'http://cellarappapi.azurewebsites.net/api/cellar/cellarbeerpicture?cellarId=' + cellarBeer.id;
-                
+            if($scope.isCellar)
+            {
+                $scope.imageSrc  = 'http://cellarappapi.azurewebsites.net/api/cellar/cellarbeerpicture?cellarId=' + cb.id;
+            }
+            else
+            {
+                $scope.imageSrc  = 'http://cellarappapi.azurewebsites.net/api/cellar/collectionbeerpicture?collectionDetailId=' + cb.id;
+            }
+          
             $scope.openModal();
         }
     }
@@ -86,19 +93,19 @@ app.directive('errSrc', function() {
 
 function loadData($scope, $http, $ionicPopup) {
 
-var isCellar = getParameterByName('type') === 'Cellar';
+$scope.isCellar = getParameterByName('type') === 'Cellar';
 
     $http({
         method: 'GET',
         params: {'token': getParameterByName('token')},
-        url: 'https://cellarappapi.azurewebsites.net/api/cellar/'+ (isCellar ? 'getcellarbeersweb' : 'getcollectionbeersweb'),
+        url: 'https://cellarappapi.azurewebsites.net/api/cellar/'+ ($scope.isCellar ? 'getcellarbeersweb' : 'getcollectionbeersweb'),
         timeout: 90000
     }).then(function(resp) {
 
         $scope.$broadcast('scroll.refreshComplete');
         $scope.hideLoading();
 
-        var titleStr = isCellar ? '' : ' Collection';
+        var titleStr = $scope.isCellar ? '' : ' Collection';
 
         var title = 'Cellar'+titleStr+': ' + resp.data.name + ' (' + resp.data.untappdUser + ')';
         $scope.title = title;
@@ -109,11 +116,6 @@ var isCellar = getParameterByName('type') === 'Cellar';
             resp.data.beers.sort(function(a, b) {
 
                 return (a.beer.breweryName + ' ' + a.beer.name).localeCompare(b.beer.breweryName + ' ' + b.beer.name);
-
-
-                // if (a.beer.breweryName + ' ' + a.beer.name < b.beer.breweryName + ' ' + b.beer.name) return -1;
-                // if (a.beer.breweryName + ' ' + a.beer.name > b.beer.breweryName + ' ' + b.beer.name) return 1;
-                // return 0;
             });
 
             $scope.items = resp.data.beers;
