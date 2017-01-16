@@ -1,89 +1,13 @@
-﻿<html ng-app="ionicApp">
+<!doctype html>
 
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Cellar</title>
 
-    <meta property="og:title" content="Cellar" />
-    <meta property="og:image" content="http://getcellar.beer/c/cellar-icon.png" />
-
-    <link rel="icon" type="image/png" href="./cellar-icon.png" />
-
-    <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
-    <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.11/angular-filter.min.js"></script>
-
-    <link href="style.css" rel="stylesheet" />
-    <script src="app.js"></script>
+  <title>Cellar</title>
 
 </head>
 
-<body ng-controller="MyCtrl">
-
-    <ion-header-bar class="bar bar-custom">
-
-        <!--<h1 class="title"><img class="title-image" src="./cellar-icon.png" height="43" /></h1>-->
-
-        <h1 class="title" ng-bind="title"></h1>
-
-
-        <!--<button class="button icon ion-information-circled"></button>-->
-
-    </ion-header-bar>
-
-
-    <ion-header-bar class="bar-light bar-subheader item-input-inset">
-        <input type="search" placeholder="Filter beers..." ng-model="query" ng-change="scrollTop()" class="full-width">
-        <button ng-if="query.length" class="button button-icon ion-android-close input-button" ng-click="clearFilter()"></button>
-    </ion-header-bar>
-
-    <ion-content>
-
-        <ion-refresher on-refresh="doRefresh()">
-        </ion-refresher>
-
-        <ion-list ng-repeat="(key, value) in items | filter: search | groupBy: 'beer.breweryName'" item="item">
-
-            <div class="item item-divider">
-                {{key}}
-            </div>
-
-            <ion-item ng-repeat="cellarBeer in value" class="item-thumbnail-left item-avatar" ng-click="showImage(cellarBeer)">
-
-                <img ng-src="{{cellarBeer.beer.image}}" err-src="https://untappd.akamaized.net/site/assets/images/temp/badge-beer-default.png">
-                <h3 class="beer-name">{{cellarBeer.beer.name}}</h3>
-                <p>{{cellarBeer.beer.style}} | {{cellarBeer.beer.abv}}%</p>
-                <p ng-if="cellarBeer.bottledOnDate">
-                    Bottled: {{formatDate(cellarBeer.bottledOnDate)}}
-                </p>
-<p ng-if="cellarBeer.hasPhoto">
-<i class="icon ion-image"></i>
-                </p>
-
-
-
-                <span class="badge badge-positive badge-qty">x{{ cellarBeer.totalCount }}{{(cellarBeer.price > 0) && ' / $' + cellarBeer.price || ''}}</span>
-
-
-            
-
-
-            </ion-item>
-
-        </ion-list>
-
-
-      <script id="image-modal.html" type="text/ng-template">
-              <div class="modal image-modal transparent" ng-click="closeModal()">
-                  <ion-pane class="transparent">
-                     <img ng-src="{{imageSrc}}" class="fullscreen-image"/>
-                  </ion-pane>
-              </div>
-          </script>
-
-    </ion-content>
-
+<body>
+<div>Future home of Cellar!</div>
 </body>
-
 </html>
