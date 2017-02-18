@@ -4,11 +4,11 @@
 }
 
 body {
-    border-top: 10px solid #26265E;
+    border-top: 10px solid #547799;
 }
 
 a {
-    color: #26265E;
+    color: #547799;
 }
 
 #screenshots {
@@ -61,7 +61,7 @@ a {
 
 .app-store {
     border-radius: 5px;
-    background-color: #26265E;
+    background-color: #547799;
     color: #fff;
     display: inline-block;
     padding: 12px;
@@ -87,7 +87,7 @@ a {
 }
 
     #footer i {
-        color: #26265E;
+        color: #547799;
     }
 
 .beta-submit-wrap {
