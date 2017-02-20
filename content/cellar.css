@@ -17,12 +17,14 @@ a {
 
     #screenshots img {
         width: 320px;
+        border: 1px solid #c9c9c9;
     }
 
 @media (max-width: 320px) {
 
     #screenshots img {
         width: 270px;
+        border: 1px solid #c9c9c9;
     }
 }
 
