@@ -55,10 +55,28 @@
 
  
 
-  
-        </div>
-    </div>
+ 
+    <div class="tab-content">
 
+        <div role="tabpanel" class="tab-pane fade in active beer-tab-stat-wrap" id="top-subscriptions">
+
+            <table id="" class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Style</th>
+                        <th>
+                            Count
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+
+            </table>
+        </div>
+
+
+
+    </div>
 
 
     <div id="footer">
@@ -90,11 +108,23 @@
     </div>
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-  
+<script>
 
+    var top10subBody = '';
+$.get('https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount', function (data) {
 
+    $.each(data, function (i, style) {
 
+        top10subBody += '<tr><td>' + style.style + '</td><td>' + style.count + '</td></tr>';
+    });
+
+    $('#top10-beer-style-tbl tbody').html(top10subBody);
+});
+    
+
+</script>
 
 </body>
 </html>
