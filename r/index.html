@@ -1,0 +1,118 @@
+<html>
+
+<head>
+    <!-- Plotly.js -->
+
+</head>
+
+<body>
+
+    <div id="cellar-transactions" style="width: 600px; height: 500px;">
+    </div>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+    <script>
+        $.get('http://cellarappapi.azurewebsites.net/api/cellar/GetCellarTransactions', function (data) {
+
+            var x = [];
+            $.each(data, function (i, elm) {
+                x.push(elm.date)
+            });
+
+            var addArray = [];
+            var bottledOnUpdateArray = [];
+            var enjoyByUpdateArray = [];
+            var noteUpdateArray = [];
+            var pictureUpdateArray = [];
+            var priceUpdateArray = [];
+            var quantityUpdateArray = [];
+            var removeArray = [];
+            $.each(data, function (i, elm) {
+
+                addArray.push(elm.transactions.add);
+                bottledOnUpdateArray.push(elm.transactions.bottledOnUpdate);
+                enjoyByUpdateArray.push(elm.transactions.enjoyByUpdate);
+                noteUpdateArray.push(elm.transactions.enjoyByUpdate);
+                pictureUpdateArray.push(elm.transactions.pictureUpdate);
+                priceUpdateArray.push(elm.transactions.priceUpdate);
+                quantityUpdateArray.push(elm.transactions.quantityUpdate);
+                removeArray.push(elm.transactions.removeUpdate);
+            });
+
+            var trace1 = {
+                x: x,
+                y: addArray,
+                name: 'Add',
+                type: 'bar'
+            };
+
+            var trace2 = {
+                x: x,
+                y: bottledOnUpdateArray,
+                name: 'BottledOn',
+                type: 'bar'
+            };
+
+            var trace3 = {
+                x: x,
+                y: enjoyByUpdateArray,
+                name: 'EnjoyBy',
+                type: 'bar'
+            };
+
+            var trace4 = {
+                x: x,
+                y: noteUpdateArray,
+                name: 'Note',
+                type: 'bar'
+            };
+
+            var trace5 = {
+                x: x,
+                y: pictureUpdateArray,
+                name: 'Picture',
+                type: 'bar'
+            };
+
+            var trace6 = {
+                x: x,
+                y: priceUpdateArray,
+                name: 'Price',
+                type: 'bar'
+            };
+
+            var trace7 = {
+                x: x,
+                y: quantityUpdateArray,
+                name: 'Quantity',
+                type: 'bar'
+            };
+
+            var trace8 = {
+                x: x,
+                y: removeArray,
+                name: 'Remove',
+                type: 'bar'
+            };
+
+            var data = [trace1, trace2, trace3, trace4, trace5, trace6, trace7, trace8];
+
+            var layout = { 
+                
+                barmode: 'group',
+                title: 'Cellar Transaction Count'
+            
+             };
+
+
+
+            Plotly.newPlot('cellar-transactions', data, layout);
+
+        });
+    </script>
+</body>
+
+</html>
