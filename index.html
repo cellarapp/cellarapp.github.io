@@ -153,6 +153,12 @@ error: function (parsedjson, textStatus, errorThrown) {
 });
 
 
+$.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount') + '&callback=?', function(data){
+	alert(data);
+});
+   
+
+
 // $('body').append(
 //     "parsedJson status: " + parsedjson.status + '</br>' + 
 //     "errorStatus: " + textStatus + '</br>' + 
