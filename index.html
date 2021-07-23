@@ -135,14 +135,11 @@ $.get('https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount', fun
 });
     
 
-$.ajax({
-  method: 'GET',
-  url: 'https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount',
-  dataType: 'jsonp', //change the datatype to 'jsonp' works in most cases
-  success: (res) => {
-   console.log(res);
-  }
-})
+$.getJSON("https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount?callback=?", function(result){
+   //response data are now in the result variable
+   alert(result);
+});
+
 
 </script>
 
