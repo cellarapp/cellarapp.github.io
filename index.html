@@ -136,20 +136,11 @@ var top10subBody = '';
 //     $('#top10-beer-style-tbl tbody').html(top10subBody);
 // });
 
-$.ajax({
-        type: 'GET',
-        url: 'https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount',
-        dataType: 'json',
-        success: function(json) {
-            console.long(json);
-        },
-        // Error never called!!!!
-        error: function(e) {
-            console.log(e.message);
-        }
-    });
 
-
+    $.getJSON("https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount?callback=?", function(result){
+   //response data are now in the result variable
+   alert(result);
+});
 
 </script>
 
