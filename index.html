@@ -119,7 +119,7 @@
     </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script>
 
@@ -136,11 +136,23 @@ var top10subBody = '';
 //     $('#top10-beer-style-tbl tbody').html(top10subBody);
 // });
 
+$.getJSON("https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount?callback=?", function (json) {
+    console.log('Got JSON');
+    console.log(json);
 
-    $.getJSON("https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount?callback=?", function(result){
-   //response data are now in the result variable
-   alert(result);
+})
+.fail(function (jqxhr, textStatus, error) {
+    var err = textStatus + ", " + error;
+    alert("There has been an error. If the problem persists contact the customer service");
+})
+.always(function () {
+    console.log("complete");
 });
+
+//     $.getJSON("https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount?callback=?", function(result){
+//    //response data are now in the result variable
+//    alert(result);
+// });
 
 </script>
 
