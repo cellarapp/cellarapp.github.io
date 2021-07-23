@@ -126,17 +126,31 @@
 
 var top10subBody = '';
 
-$.getJSON("https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount?callback=?", function (data) {
+// $.getJSON("https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount?callback=?", function (data) {
    
-    $.each(data, function (i, style) {
+//     $.each(data, function (i, style) {
 
-    top10subBody += '<tr><td>' + style.style + '</td><td>' + style.count + '</td></tr>';
+//     top10subBody += '<tr><td>' + style.style + '</td><td>' + style.count + '</td></tr>';
+//     });
+
+//     $('#top10-beer-style-tbl tbody').html(top10subBody);
+// });
+
+
+
+
+
+    $.ajax({
+        url: 'https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount?callback=photos',
+        dataType: 'jsonp',
+        jsonpCallback: 'photos',
+        jsonp: 'callback',
     });
 
-    $('#top10-beer-style-tbl tbody').html(top10subBody);
-});
-
-
+function photos (data) {
+    alert(data);
+    console.log(data);
+};
 </script>
 
 </body>
