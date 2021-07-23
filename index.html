@@ -123,21 +123,17 @@
 
 <script>
 
-    var top10subBody = '';
-$.get('https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount', function (data) {
 
+var top10subBody = '';
+
+$.getJSON("https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount?callback=?", function (data) {
+   
     $.each(data, function (i, style) {
 
-        top10subBody += '<tr><td>' + style.style + '</td><td>' + style.count + '</td></tr>';
+    top10subBody += '<tr><td>' + style.style + '</td><td>' + style.count + '</td></tr>';
     });
 
     $('#top10-beer-style-tbl tbody').html(top10subBody);
-});
-    
-
-$.getJSON("https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount?callback=?", function(result){
-   //response data are now in the result variable
-   alert(result);
 });
 
 
