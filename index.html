@@ -123,66 +123,17 @@
 
 <script>
 
-
 var top10subBody = '';
 
-// $.getJSON("https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount?callback=?", function (data) {
+ $.getJSON("https://cellarappapivnext.azurewebsites.net/api/cellar/GetBeerStyleCount", function (data) {
    
-//     $.each(data, function (i, style) {
+    $.each(data, function (i, style) {
 
-//     top10subBody += '<tr><td>' + style.style + '</td><td>' + style.count + '</td></tr>';
-//     });
+     top10subBody += '<tr><td>' + style.style + '</td><td>' + style.count + '</td></tr>';
+     });
 
-//     $('#top10-beer-style-tbl tbody').html(top10subBody);
-// });
-
-
-$.ajax({
-url: "https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount",
-dataType: "jsonp",
-
-success: function (parsed_json) {
-    console.log(parsed_json);
-    },
-
-error: function (parsedjson, textStatus, errorThrown) {
-    console.log("parsedJson: " + JSON.stringify(parsedjson));
-    console.log("textStatus: " + textStatus);
-    console.log("errorThrown: " + errorThrown);
-    }
+     $('#top10-beer-style-tbl tbody').html(top10subBody);
 });
-
-
-$.getJSON('https://www.whateverorigin.org/get?url=' + encodeURIComponent('https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount') + '&callback=?', function(data){
-	alert(data);
-});
-   
-
-
-// $('body').append(
-//     "parsedJson status: " + parsedjson.status + '</br>' + 
-//     "errorStatus: " + textStatus + '</br>' + 
-//     "errorThrown: " + errorThrown);        
-
-//  }
-
-// $.getJSON("https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount?callback=?", function (json) {
-//     console.log('Got JSON');
-//     console.log(json);
-
-// })
-// .fail(function (jqxhr, textStatus, error) {
-//     var err = textStatus + ", " + error;
-//     alert("There has been an error. If the problem persists contact the customer service");
-// })
-// .always(function () {
-//     console.log("complete");
-// });
-
-//     $.getJSON("https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount?callback=?", function(result){
-//    //response data are now in the result variable
-//    alert(result);
-// });
 
 </script>
 
