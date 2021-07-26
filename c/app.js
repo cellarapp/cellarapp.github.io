@@ -49,11 +49,11 @@ var app = angular.module('ionicApp', ['ionic', 'angular.filter'])
         {
             if($scope.isCellar)
             {
-                $scope.imageSrc  = 'http://cellarappapi.azurewebsites.net/api/cellar/cellarbeerpicture?cellarId=' + cb.id;
+                $scope.imageSrc  = 'https://cellarappapivnext.azurewebsites.net/api/cellar/cellarbeerpicture?cellarId=' + cb.id;
             }
             else
             {
-                $scope.imageSrc  = 'http://cellarappapi.azurewebsites.net/api/cellar/collectionbeerpicture?collectionDetailId=' + cb.id;
+                $scope.imageSrc  = 'https://cellarappapivnext.azurewebsites.net/api/cellar/collectionbeerpicture?collectionDetailId=' + cb.id;
             }
           
             $scope.openModal();
@@ -98,7 +98,7 @@ $scope.isCellar = getParameterByName('type') === 'Cellar';
     $http({
         method: 'GET',
         params: {'token': getParameterByName('token')},
-        url: 'https://cellarappapi.azurewebsites.net/api/cellar/'+ ($scope.isCellar ? 'getcellarbeersweb' : 'getcollectionbeersweb'),
+        url: 'https://cellarappapivnext.azurewebsites.net/api/cellar/'+ ($scope.isCellar ? 'getcellarbeersweb' : 'getcollectionbeersweb'),
         timeout: 90000
     }).then(function(resp) {
 
