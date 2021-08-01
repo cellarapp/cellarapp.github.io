@@ -87,8 +87,26 @@
             </div>
         </script>
 
-
         <script id="image-modal.html" type="text/ng-template">
+            <ion-modal-view>
+                <ion-header-bar ng-click="closeModal()" class="icon icon-right ion-ios-close-outline">
+                    <h1 class="title">
+                        {{breweryBeerName}}
+                    </h1>
+                </ion-header-bar>
+
+                <ion-content>
+                    <img ng-src="{{imageSrc}}" />
+
+                    <div class="item item-text-wrap">
+                        {{note}}
+                    </div>
+                </ion-content>
+            </ion-modal-view>
+        </script>
+
+
+        <!--<script id="image-modal.html" type="text/ng-template">
 
             <div class="modal transparent">
 
@@ -106,8 +124,8 @@
 
             </div>
 
-                
-        </script>
+
+        </script>-->
 
     </ion-content>
 
