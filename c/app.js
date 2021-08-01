@@ -49,13 +49,18 @@ var app = angular.module('ionicApp', ['ionic', 'angular.filter'])
         {
             if($scope.isCellar)
             {
-                $scope.imageSrc  = 'https://cellarappapivnext.azurewebsites.net/api/cellar/cellarbeerpicture?cellarId=' + cb.id;
+                $scope.imageSrc = 'https://cellarappapivnext.azurewebsites.net/api/cellar/cellarbeerpicture?cellarId=' + cb.id;
+
+                $scope.note = cb.note;
+
             }
             else
             {
                 $scope.imageSrc  = 'https://cellarappapivnext.azurewebsites.net/api/cellar/collectionbeerpicture?collectionDetailId=' + cb.id;
             }
-          
+
+            $scope.breweryBeerName = cb.beer.breweryName + ' ' + cb.beer.name;
+
             $scope.openModal();
         }
     }
