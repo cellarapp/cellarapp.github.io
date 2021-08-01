@@ -1,4 +1,4 @@
-﻿<html ng-app="ionicApp">
+<html ng-app="ionicApp">
 
 <head>
     <meta charset="utf-8">
@@ -57,8 +57,8 @@
                 <p ng-if="cellarBeer.bottledOnDate">
                     Bottled: {{formatDate(cellarBeer.bottledOnDate)}}
                 </p>
-<p ng-if="cellarBeer.hasPhoto">
-<i class="icon ion-image"></i>
+                <p ng-if="cellarBeer.hasPhoto">
+                    <i class="icon ion-image"></i>
                 </p>
 
 
@@ -66,21 +66,48 @@
                 <span class="badge badge-positive badge-qty">x{{ cellarBeer.totalCount }}{{(cellarBeer.price > 0) && ' / $' + cellarBeer.price || ''}}</span>
 
 
-            
+
 
 
             </ion-item>
 
         </ion-list>
 
+        <script id="templates/modal-1.html" type="text/ng-template">
+            <div class="modal transparent">
+                <div class="card">
+                    <i class="icon ion-ios-close close-modal" ng-click="closeModal(1)"></i>
+                    <div class="item item-divider">
+                        Header 1
+                    </div>
+                    <div class="item item-text-wrap">
+                        Hello from Modal 1
+                    </div>
+                </div>
+            </div>
+        </script>
 
-      <script id="image-modal.html" type="text/ng-template">
-              <div class="modal image-modal transparent" ng-click="closeModal()">
-                  <ion-pane class="transparent">
-                     <img ng-src="{{imageSrc}}" class="fullscreen-image"/>
-                  </ion-pane>
-              </div>
-          </script>
+
+        <script id="image-modal.html" type="text/ng-template">
+
+            <div class="modal transparent">
+
+                <i class="icon ion-ios-close close-modal" ng-click="closeModal()"></i>
+                <div class="item item-divider">
+                    {{breweryBeerName}}
+                </div>
+                <div>
+                    <img ng-src="{{imageSrc}}" class="fullscreen-image" />
+                </div>
+                <div class="item item-text-wrap">
+                    {{note}}
+                </div>
+
+
+            </div>
+
+                
+        </script>
 
     </ion-content>
 
