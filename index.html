@@ -1,147 +1,141 @@
-<html ng-app="ionicApp">
 
+<!DOCTYPE html>
+
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui" />
     <title>Cellar</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <link href="https://rawgit.com/cellarapp/cellarapp.github.io/master/content/cellar.css" rel="stylesheet" />
+
+    <link href="//fonts.googleapis.com/css?family=Arimo:400italic,400,700italic,700" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/cellarapp/cellarapp.github.io/master/content/font-awesome.min.css" rel="stylesheet" />
+
+    <meta name="description" content="Inventory your beers and share with others. Organize and share Collections from your Cellar. Update Wish List and never forget beers you're after." />
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@getcellar">
+    <meta name="twitter:creator" content="@getcellar">
+    <meta name="twitter:title" content="Cellar">
+    <meta name="twitter:description" content="Inventory your beers and share with others. Organize and share Collections from your Cellar. Update Wish List and never forget beers you're after.">
+    <meta name="twitter:image:src" content="https://raw.githubusercontent.com/cellarapp/cellarapp.github.io/master/c/cellar-icon.png">
 
     <meta property="og:title" content="Cellar" />
-    <meta property="og:image" content="http://getcellar.beer/c/cellar-icon.png" />
+    <meta property="og:url" content="http://getcellar.beer/" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/cellarapp/cellarapp.github.io/master/c/cellar-icon.png" />
+    <meta property="og:description" content="Inventory your beers and share with others. Organize and share Collections from your Cellar. Update Wish List and never forget beers you're after." />
 
-    <link rel="icon" type="image/png" href="./cellar-icon.png" />
+    <meta name="theme-color" content="#26265E">
 
-    <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
-    <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.11/angular-filter.min.js"></script>
-
-    <link href="style.css" rel="stylesheet" />
-    <script src="app.js"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/cellarapp/cellarapp.github.io/master/c/cellar-icon.png">
 
 </head>
 
-<body ng-controller="MyCtrl">
+<body>
 
-    <ion-header-bar class="bar bar-custom">
+    <div id="header">
+        <div class="container text-center">
+            <h1>Cellar</h1>
+            <p id="tagline" class="text-muted">Beer Inventory!</p>
 
-        <!--<h1 class="title"><img class="title-image" src="./cellar-icon.png" height="43" /></h1>-->
+            <div class="application-stores">
 
-        <h1 class="title" ng-bind="title"></h1>
+                <a href="https://appsto.re/us/UmYFgb.i"><img src="https://raw.githubusercontent.com/cellarapp/cellarapp.github.io/master/content/img/app-store2.jpg" /></a> <br />
 
-
-        <!--<button class="button icon ion-information-circled"></button>-->
-
-    </ion-header-bar>
-
-
-    <ion-header-bar class="bar-light bar-subheader item-input-inset">
-        <input type="search" placeholder="Filter beers..." ng-model="query" ng-change="scrollTop()" class="full-width">
-        <button ng-if="query.length" class="button button-icon ion-android-close input-button" ng-click="clearFilter()"></button>
-    </ion-header-bar>
-
-    <ion-content>
-
-        <ion-refresher on-refresh="doRefresh()">
-        </ion-refresher>
-
-        <ion-list ng-repeat="(key, value) in items | filter: search | groupBy: 'beer.breweryName'" item="item">
-
-            <div class="item item-divider">
-                {{key}}
+                <a href="https://play.google.com/store/apps/details?id=com.slaptap.cellar&hl=en"><img id="google-play" src="https://raw.githubusercontent.com/cellarapp/cellarapp.github.io/master/content/img/googleplay.png" /></a>
             </div>
+        </div>
+    </div>
 
-            <ion-item ng-repeat="cellarBeer in value" class="item-thumbnail-left item-avatar" ng-click="showImage(cellarBeer)">
+    <div id="screenshots" class="container text-center">
 
-                <img ng-src="{{cellarBeer.beer.image}}" err-src="https://untappd.akamaized.net/site/assets/images/temp/badge-beer-default.png">
-                <h3 class="beer-name">{{cellarBeer.beer.name}}</h3>
-                <p>{{cellarBeer.beer.style}} | {{cellarBeer.beer.abv}}%</p>
-                <p ng-if="cellarBeer.bottledOnDate">
-                    Bottled: {{formatDate(cellarBeer.bottledOnDate)}}
-                </p>
-                <p ng-if="cellarBeer.hasPhoto">
-                    <i class="icon ion-image"></i>
-                </p>
+        <img src="https://raw.githubusercontent.com/cellarapp/cellarapp.github.io/master/content/img/cellar.jpg" alt="Cellar" />
+    </div>
+
+ 
+    <div id="stats-container" class="container">
 
 
+        <ul class="nav nav-tabs">
 
-                <span class="badge badge-positive badge-qty">x{{ cellarBeer.totalCount }}{{(cellarBeer.price > 0) && ' / $' + cellarBeer.price || ''}}</span>
-
-
-
-
-
-            </ion-item>
-
-        </ion-list>
-
-        <script id="templates/modal-1.html" type="text/ng-template">
-            <div class="modal transparent">
-                <div class="card">
-                    <i class="icon ion-ios-close close-modal" ng-click="closeModal(1)"></i>
-                    <div class="item item-divider">
-                        Header 1
-                    </div>
-                    <div class="item item-text-wrap">
-                        Hello from Modal 1
-                    </div>
-                </div>
-            </div>
-        </script>
-
-        <script id="image-modal.html" type="text/ng-template">
-            <ion-modal-view>
-                <ion-header-bar class="bar bar-header bar-positive">
-                    <h1 class="title">New Contact</h1>
-                    <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
-                </ion-header-bar>
-                <ion-content class="padding">
-                    {{note}}
-
-                    
-                </ion-content>
-            </ion-modal-view>
+            <li class="active">
+                <a href="#beers-by-style" data-toggle="tab">Cellar Beers by Style</a>
+            </li>
+        </ul>
 
 
-            <!--<ion-modal-view>
-        <ion-header-bar ng-click="closeModal()" class="icon icon-right ion-ios-close-outline">
-            <h1 class="title">
-                {{breweryBeerName}}
-            </h1>
-        </ion-header-bar>
 
-        <ion-content>
-            <img ng-src="{{imageSrc}}" />
+ 
+    <div class="tab-content">
 
-            <div class="item item-text-wrap">
-                {{note}}
-            </div>
-        </ion-content>
-    </ion-modal-view>-->
-        </script>
+        <div role="tabpanel" class="tab-pane fade in active beer-tab-stat-wrap" id="beers-by-style">
 
+            <table id="top10-beer-style-tbl" class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Style</th>
+                        <th>
+                            Count
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
 
-        <!--<script id="image-modal.html" type="text/ng-template">
-
-            <div class="modal transparent">
-
-                <i class="icon ion-ios-close close-modal" ng-click="closeModal()"></i>
-                <div class="item item-divider">
-                    {{breweryBeerName}}
-                </div>
-                <div>
-                    <img ng-src="{{imageSrc}}" class="fullscreen-image" />
-                </div>
-                <div class="item item-text-wrap">
-                    {{note}}
-                </div>
+            </table>
+        </div>
 
 
+
+    </div>
+    </div>
+
+    <div id="footer">
+        <div class="container text-center">
+
+
+            <div class="social">
+                <a href="//twitter.com/getcellar"><i class="fa fa-twitter"></i></a>
             </div>
 
 
-        </script>-->
+            <div class="text-muted creators">
+                Handcrafted with love
+                over good beer<br />
 
-    </ion-content>
+                <a href="http://twitter.com/andrew_herrick">@andrew_herrick</a> & <a href="http://twitter.com/devkitt">@devkitt</a>
+
+
+            </div>
+            <div class="text-muted">
+
+                Support and feedback <br />
+                <a href="mailto:hi@getcellar.beer">hi@getcellar.beer</a>
+            </div>
+            <div id="pbu">
+                <a href="//untappd.com"><img src="https://raw.githubusercontent.com/cellarapp/cellarapp.github.io/master/content/img/pbu_320_black.png" /></a>
+            </div>
+        </div>
+    </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+
+    var top10subBody = '';
+$.get('https://cellarappapi.azurewebsites.net/api/cellar/GetBeerStyleCount', function (data) {
+
+    $.each(data, function (i, style) {
+
+        top10subBody += '<tr><td>' + style.style + '</td><td>' + style.count + '</td></tr>';
+    });
+
+    $('#top10-beer-style-tbl tbody').html(top10subBody);
+});
+    
+
+</script>
 
 </body>
-
 </html>
